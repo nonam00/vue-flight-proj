@@ -9,7 +9,7 @@ const store = useFlightsStore();
 const { flights } = storeToRefs(store);
 const { removeFlight } = store;
 
-function redirectForEdit(id: string) {
+const redirectForEdit = (id: string) => {
   return router.push(`/edit/${id}`);
 }
 </script>

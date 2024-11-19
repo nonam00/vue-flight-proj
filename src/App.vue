@@ -17,5 +17,6 @@ h1 {
   text-align: center;
   margin: 1rem 5rem;
   padding: 1rem 0;
+  text-decoration: none;
 }
 </style>

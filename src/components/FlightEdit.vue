@@ -15,8 +15,8 @@
     store.editFlight(editedFlight);
     router.push("/");
   }
-
 </script>
+
 <template>
   <h2>Edit flight info</h2>
   <flight-form :flight="flight" @submit="onSubmit" @cancel="router.push('/')"/>

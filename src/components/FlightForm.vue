@@ -1,46 +1,32 @@
 <script setup lang="ts">
-import {computed, ref, defineEmits} from "vue";
+import {reactive} from "vue";
 import {Flight} from "../types/flight.ts";
+
 const props = defineProps<{flight?: Flight}>();
-const flight = ref<Flight>(props.flight as Flight ?? {
+const flightForm = reactive<Flight>(props.flight ?? {
   id: "",
   name: "",
   departure: "",
   destination: ""
 });
-const emit = defineEmits<{
-  (e: "submit", val: Flight): void
-  (e: "cancel"): void
-}>()
-
-const isNameEmpty = computed(() => flight.value.name.length == 0);
-const isDepartureEmpty = computed(() => flight.value.departure.length == 0);
-const isDestinationEmpty = computed(() => flight.value.name.length == 0);
-const isValid = computed(() => !isNameEmpty && !isDepartureEmpty && !isDestinationEmpty);
-
-const handleSubmit = () => {
-  if (isValid) {
-    emit("submit", flight.value);
-  }
-}
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="$emit('submit', flightForm)">
     <div class="input-section">
       <p>Name:</p>
-      <input type="text" v-model="flight.name" required />
+      <input type="text" v-model="flightForm.name" required />
     </div>
     <div class="input-section">
       <p>Departure:</p>
-      <input type="text" v-model="flight.departure" required >
+      <input type="text" v-model="flightForm.departure" required >
     </div>
     <div class="input-section">
       <p>Destination:</p>
-      <input type="text" v-model="flight.destination" required >
+      <input type="text" v-model="flightForm.destination" required >
     </div>
     <div class="form-buttons">
-      <button type="button" @click="emit('cancel')" class="cancel-button">Cancel</button>
+      <button type="button" @click="$emit('cancel')" class="cancel-button">Cancel</button>
       <button type="submit" class="submit-button">Apply changes</button>
     </div>
 

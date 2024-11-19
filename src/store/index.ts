@@ -1,5 +1,5 @@
-import { Flight } from "../types/flight.ts";
 import { defineStore } from "pinia";
+import { Flight } from "../types/flight.ts";
 
 interface State {
     ids: number;

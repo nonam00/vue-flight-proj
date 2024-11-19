@@ -9,8 +9,7 @@ interface State {
 export const useFlightsStore = defineStore("flights", {
     state: (): State => {
         return {
-            ids: 3,
-            // initial data
+            ids: 4,
             flights: [
                 {
                     id: "1",
@@ -50,7 +49,7 @@ export const useFlightsStore = defineStore("flights", {
             this.$patch((state) => state.flights.splice(index, 1));
         },
         editFlight(flight: Flight) {
-            const index = this.flights.findIndex((flight: Flight) => flight.id === flight.id);
+            const index = this.flights.findIndex((f: Flight) => f.id === flight.id);
             this.$patch((state) => {
                 state.flights[index].name = flight.name;
                 state.flights[index].departure = flight.departure;
@@ -60,7 +59,7 @@ export const useFlightsStore = defineStore("flights", {
     },
     getters: {
         getFlightById: (state) => {
-            return (id: string): Flight => state.flights.find(flight => flight.id === id)!;
+            return (id: string): Flight => Object.assign({}, state.flights.find(flight => flight.id === id));
         }
     }
 })

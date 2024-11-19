@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import {computed, ref, defineEmits} from "vue";
 import {Flight} from "../types/flight.ts";
-const props = defineProps({
-  flight: {
-    required: false
-  }
-});
+const props = defineProps<{flight?: Flight}>();
 const flight = ref<Flight>(props.flight as Flight ?? {
+  id: "",
   name: "",
   departure: "",
   destination: ""
@@ -23,7 +20,6 @@ const isValid = computed(() => !isNameEmpty && !isDepartureEmpty && !isDestinati
 
 const handleSubmit = () => {
   if (isValid) {
-    console.log(flight.value);
     emit("submit", flight.value);
   }
 }

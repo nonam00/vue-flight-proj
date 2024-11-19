@@ -11,8 +11,8 @@
   const { getFlightById } = storeToRefs(store);
   const flight: Flight = getFlightById.value(route.params.id[0]);
 
-  const onSubmit = () => {
-    store.editFlight(flight);
+  const onSubmit = (editedFlight: Flight) => {
+    store.editFlight(editedFlight);
     router.push("/");
   }
 
